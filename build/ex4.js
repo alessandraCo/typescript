@@ -45,6 +45,15 @@ function computeAlphabeticallyOrder(input) {
         }
     });
     output = output.sort();
-    return output.join(" ");
+    orderedLonfo = output.join(" ");
+    return orderedLonfo;
 }
 console.log(computeAlphabeticallyOrder(ilLonfo));
+//html utility
+window.onload = () => {
+    const resultContainer = document.getElementById("showResult");
+    //new output:
+    let newP = document.createElement("p");
+    newP.innerText = orderedLonfo;
+    resultContainer === null || resultContainer === void 0 ? void 0 : resultContainer.appendChild(newP);
+};

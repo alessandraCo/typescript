@@ -41,3 +41,28 @@ for(let i=0; i<=100000; i++) {
 }
 console.log(arrayArmstrong);
 console.log("there are " + count + " armstrong numbers!");
+
+//html utility
+window.onload = () => {
+    document.getElementById("armstrong")?.addEventListener("click", showArmstrong);
+}
+
+function showArmstrong() {
+    const resultContainer = document.getElementById("showResult");
+    const number = document.getElementById("number");
+    //clear previous outputs
+    if(number !== null) {
+        number.innerText = "";
+    }
+    while(resultContainer?.firstChild) {
+        resultContainer.firstChild.remove();
+    }
+    //new output
+    if(number !== null) {
+        number.innerText = `There are ${count} armstrong numbers!`;
+    }
+    let newP = document.createElement("p");
+    newP.innerText = arrayArmstrong.join(' ');
+    newP.setAttribute("class", "center-output");
+    resultContainer?.appendChild(newP);
+}

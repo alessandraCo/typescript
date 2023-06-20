@@ -8,8 +8,8 @@ console.log(`I'll decipher the given message`);
 //DZACL WL ALYNL WL NLACL NLXAL! (+401)
 
 //input
-const message: string = "DZACL WL ALYNL WL NLACL NLXAL!";
-const caesarNumber: number = +401;
+//const message: string = "DZACL WL ALYNL WL NLACL NLXAL!";
+//const caesarNumber: number = +401;
 //output
 let messageOut: string[] = [];
 
@@ -34,6 +34,7 @@ function shiftLetter(letter: string, encrypt: number): string {
 
 //function to decrypt the message
 function decipherMessage(message: string, encryption: number): string {
+  messageOut = [];
   let decryptedMessage: string[] = message.split("");
   encryption *= -1;
   decryptedMessage.forEach((letter) => {
@@ -43,4 +44,24 @@ function decipherMessage(message: string, encryption: number): string {
   return messageOut.join("");
 }
 
-console.log(decipherMessage(message, caesarNumber));
+//html utility
+window.onload = () => {
+  document.getElementById("messageForm")?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const messageIn = (<HTMLInputElement>document.getElementById("message"))?.value;
+    let caesarIn : string | number= (<HTMLInputElement>document.getElementById("caesarNum"))?.value;
+    caesarIn = parseInt(caesarIn);
+    const messageOut = decipherMessage(messageIn, caesarIn);
+    console.log(messageOut);
+    const resultContainer = document.getElementById("showResult");
+    //clear previous outputs
+    while(resultContainer?.firstChild) {
+      resultContainer.removeChild(resultContainer.firstChild);
+    }
+    //new output
+    let newP = document.createElement("p");
+    newP.innerText = messageOut;
+    newP.setAttribute("class", "center-output");
+    resultContainer?.appendChild(newP);
+  });
+}

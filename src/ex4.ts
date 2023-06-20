@@ -7,7 +7,7 @@ const ilLonfo: string =
   "Il Lonfo non vaterca né gluisce e molto raramente barigatta, ma quando soffia il bego a bisce bisce sdilenca un poco e gnagio s'archipatta. È frusco il Lonfo! È pieno di lupigna arrafferia malversa e sofolenta! Se cionfi ti sbiduglia e ti arrupigna se lugri ti botalla e ti criventa. Eppure il vecchio Lonfo ammargelluto che bete e zugghia e fonca nei trombazzi fa lègica busìa, fa gisbuto; e quasi quasi in segno di sberdazzi gli affarferesti un gniffo. Ma lui zuto t'alloppa, ti sbernecchia; e tu l'accazzi.";
 
 //output
-let orderedLonfo: string[];
+let orderedLonfo: string;
 
 //this function serch duplicates in array
 function isDuplicated(word : string, array : string[]) : boolean {
@@ -51,7 +51,17 @@ function computeAlphabeticallyOrder(input: string) : string{
     }
   });
   output = output.sort();
-  return output.join(" ");
+  orderedLonfo = output.join(" ");
+  return orderedLonfo;
 }
 
 console.log(computeAlphabeticallyOrder(ilLonfo));
+
+//html utility
+window.onload = () => {
+  const resultContainer = document.getElementById("showResult")
+  //new output:
+  let newP = document.createElement("p");
+  newP.innerText = orderedLonfo;
+  resultContainer?.appendChild(newP);
+}

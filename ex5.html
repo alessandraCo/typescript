@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./assets/logo.svg" type="img/x-icon" />
+    <link rel="stylesheet" href="./style/main.css" />
+    <title>Exercises</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div>
+          <a href="index.html"
+            ><img src="./assets/logo.svg" alt="logo image"
+          /></a>
+          <h3>Exercises</h3>
+        </div>
+        <a href="index.html">Exercise 1</a>
+        <a href="ex2.html">Exercise 2</a>
+        <a href="ex3.html">Exercise 3</a>
+        <a href="ex4.html">Exercise 4</a>
+        <a href="#" class="actual">Exercise 5</a>
+        <a href="ex6.html">Exercise 6</a>
+      </nav>
+    </header>
+    <main>
+      <br />
+      <h2 class="text-centered">Ex5: WhatsApp</h2>
+      <h3 class="text-centered">I'll calculate the cost of your message</h3>
+      <br />
+      <form class="text-button-form" id="form">
+        <div class="input-container">
+          <input
+            type="text"
+            name="waMessage"
+            id="textInput"
+            placeholder="end message with 'stop'"
+          />
+          <input type="submit" name="cost" id="buttonInput" value="cost" />
+        </div>
+      </form>
+      <div class="center-element">
+        <div class="tooltip">
+          <span class="tooltip-text" id="tip">message must end with 'stop'</span>
+        </div>
+      </div>
+      <br />
+      <div class="result-container" id="showResult"></div>
+    </main>
+    <script src="./build/ex5.js"></script>
+  </body>
+</html>

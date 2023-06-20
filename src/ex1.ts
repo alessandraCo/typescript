@@ -76,3 +76,20 @@ console.log(`prime: \n` + primeSequence.join(" "));
 //   }
 //   return true;
 // }
+
+//html utility
+window.onload = () => {
+  document.getElementById("norFiboPrime")?.addEventListener("click", printSequence);
+}
+
+function printSequence() {
+  const divElement = document.getElementById("showResult");
+  //clean previus outputs
+  while(divElement?.firstChild) {
+    divElement.firstChild.remove();
+  }
+  //showing result
+  let newP = document.createElement("p");
+  newP.innerText = norFiboNorPrime.join(' ');
+  divElement?.appendChild(newP);
+}

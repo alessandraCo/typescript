@@ -71,3 +71,19 @@ console.log(`prime: \n` + primeSequence.join(" "));
 //   }
 //   return true;
 // }
+//html utility
+window.onload = () => {
+    var _a;
+    (_a = document.getElementById("norFiboPrime")) === null || _a === void 0 ? void 0 : _a.addEventListener("click", printSequence);
+};
+function printSequence() {
+    const divElement = document.getElementById("showResult");
+    //clean previus outputs
+    while (divElement === null || divElement === void 0 ? void 0 : divElement.firstChild) {
+        divElement.firstChild.remove();
+    }
+    //showing result
+    let newP = document.createElement("p");
+    newP.innerText = norFiboNorPrime.join(' ');
+    divElement === null || divElement === void 0 ? void 0 : divElement.appendChild(newP);
+}

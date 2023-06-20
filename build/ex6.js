@@ -38,3 +38,27 @@ for (let i = 0; i <= 100000; i++) {
 }
 console.log(arrayArmstrong);
 console.log("there are " + count + " armstrong numbers!");
+//html utility
+window.onload = () => {
+    var _a;
+    (_a = document.getElementById("armstrong")) === null || _a === void 0 ? void 0 : _a.addEventListener("click", showArmstrong);
+};
+function showArmstrong() {
+    const resultContainer = document.getElementById("showResult");
+    const number = document.getElementById("number");
+    //clear previous outputs
+    if (number !== null) {
+        number.innerText = "";
+    }
+    while (resultContainer === null || resultContainer === void 0 ? void 0 : resultContainer.firstChild) {
+        resultContainer.firstChild.remove();
+    }
+    //new output
+    if (number !== null) {
+        number.innerText = `There are ${count} armstrong numbers!`;
+    }
+    let newP = document.createElement("p");
+    newP.innerText = arrayArmstrong.join(' ');
+    newP.setAttribute("class", "center-output");
+    resultContainer === null || resultContainer === void 0 ? void 0 : resultContainer.appendChild(newP);
+}

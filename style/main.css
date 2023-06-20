@@ -1,0 +1,171 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
+nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #B4E1FF;
+}
+nav div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+}
+nav div a {
+  min-width: 0px;
+}
+nav div a img {
+  width: 35px;
+  height: 35px;
+}
+nav a {
+  color: black;
+  text-decoration: none;
+  min-width: 75px;
+  transition: 0.25s;
+}
+nav a:hover {
+  color: white;
+}
+nav a:active {
+  text-decoration: underline;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: "Quicksand", sans-serif;
+}
+
+.text-centered {
+  text-align: center;
+}
+
+.center-element {
+  display: flex;
+  flex-direction: row;
+  margin-left: 40%;
+  margin-top: 1%;
+}
+
+.tooltip {
+  display: inline-flex;
+}
+.tooltip .tooltip-text {
+  width: 180px;
+  font-size: small;
+  position: absolute;
+  z-index: 1;
+  background-color: #AB87FF;
+  color: white;
+  text-align: justify;
+  opacity: 0;
+  border-radius: 5px;
+  transition: opacity 0.3s;
+}
+.tooltip .tooltip-text:after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #AB87FF transparent;
+}
+
+.actual {
+  text-decoration: underline;
+  color: white;
+}
+
+pre {
+  margin: 0 25px;
+}
+
+button {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  font-family: "Quicksand", sans-serif;
+  width: 50px;
+  height: 30px;
+  background-color: #B4E1FF;
+  border-color: #AB87FF;
+  border-radius: 10%;
+  border-width: 1px;
+}
+button:hover {
+  cursor: pointer;
+}
+
+.result-container {
+  display: flex;
+  max-width: 1000px;
+  margin: auto;
+  text-align: justify;
+}
+
+.center-output {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.text-button-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: "Quicksand", sans-serif;
+}
+.text-button-form .input-container {
+  display: inline-flex;
+  border: 1px solid black;
+  height: 35px;
+  border-radius: 4%;
+}
+.text-button-form .input-container #buttonInput {
+  font-family: inherit;
+  padding: 0;
+  width: 50px;
+  background-color: #B4E1FF;
+  border: 1px solid #AB87FF;
+  border-left: none;
+}
+.text-button-form .input-container #buttonInput:hover {
+  cursor: pointer;
+}
+.text-button-form .input-container #textInput {
+  font-family: inherit;
+  height: 33px;
+  border: none;
+}
+
+#messageForm {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+  font-family: "Quicksand", sans-serif;
+}
+#messageForm #message, #messageForm #caesarNum {
+  font-family: inherit;
+  height: 30px;
+  width: 200px;
+}
+#messageForm #decipherButton {
+  font-family: inherit;
+  background-color: #B4E1FF;
+  border: 1px solid #AB87FF;
+  border-radius: 5%;
+  width: 80px;
+  height: 30px;
+}
+#messageForm #decipherButton:hover {
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=main.css.map */
