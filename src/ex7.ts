@@ -101,26 +101,20 @@ function checkMail(email: string): string | undefined {
   }
 }
 
-//users list
-let usersList: User[] = [];
+let userList: User[] = [];
+let user1 : User = new User("user1", "user1@mail.com", "pass1", true, false);
+let user2 : User = new User("user2", "user2@mail.com", "pass2", false, false);  //no newsletter
+let user3 : User = new User("user3", "user3@mail.com", "pass3", true, false);
+let user4 : User = new User("user4", "user4@mail.com", "pass4", true, false);
+let user5 : User = new User("user5", "user5@mail.com", "pass5", true, false);
+userList.push(user1);
+userList.push(user2);
+userList.push(user3);
+userList.push(user4);
+userList.push(user5);
 
-//add new users:
-let utente1 = new User("utente1", "utente1@mail.com", "password", false);
-let cri = new User("cristina", "cristinaelkoury98@gmail.com", "criPass", true);
-let luna = new User("luna", "luna.saponaro7@gmail.com", "lunaPass", true);
-let ale = new User("ale", "petruzzelli.alessandro@gmail.com", "alePass", true);
-let io = new User("io", "alessandra.colletti@gmail.com", "myPass", true);
-usersList.push(utente1);
-usersList.push(cri);
-usersList.push(luna);
-usersList.push(ale);
-usersList.push(io);
-
-//add first admin:
-let admin1 = new User("admin1", "admin1@mail.com", "secretPass", false, true);
-usersList.push(admin1);
-
-console.log(usersList);
+let admin1 : User = new User("admin1", "admin1@mail.com", "admin1Pass", true, true);
+userList.push(admin1);
 
 //Menù
 console.log("Welcome! What do you want to do?");
@@ -164,24 +158,25 @@ while (input !== "E") {
 }
 
 //newsletter
-function sendingNews() {
-  usersList.forEach((user) => {
+function sendingNews(fromUser : User) {
+  userList.forEach((user) => {
     //sending email only to those users subscribed to the newsletter and with a valid email
     if (user.getSubscription()) {
       const email = user.getEmail();
       if (email !== undefined) {
         //email settings
         var transporter = nodemailer.createTransport({
-          service: "hotmail",
+          host: 'smtp.ethereal.email',
+          port: 587,
           auth: {
-            user: "testnode2023@outlook.it",
-            pass: "passNode2023",
-          },
+              user: 'thalia.kuhlman82@ethereal.email',
+              pass: 'eCRAkt1mtPBHwmtwWT'
+          }
         });
 
         var mailOptions = {
-          from: "testnode2023@outlook.it",
-          to: ""+email+"",
+          from: fromUser.getEmail(),
+          to: email,
           subject: "Sending Email using Node.js",
           text: "Hi "+ user.getUsername() +" from my newsletter application!",
         };
@@ -219,7 +214,7 @@ function registerUser(): User {
     sub = prompt();
   }
   const utente: User = new User(username, email, password, sub);
-  usersList.push(utente);
+  userList.push(utente);
   return utente;
 }
 
@@ -235,7 +230,7 @@ function secondMenuAdmin(adminLogged: User) {
         console.log("let's do that!");
         break;
       case "G":
-        sendingNews();
+        sendingNews(adminLogged);
         break;
       default:
         console.log("Please, enter a valid input");
@@ -251,9 +246,9 @@ function secondMenuUser(userLogged: User) {
 }
 
 function searchByUsername(username: string): User | undefined {
-  for (let i = 0; i < usersList.length; i++) {
-    if (usersList[i].getUsername() === username) {
-      return usersList[i];
+  for (let i = 0; i < userList.length; i++) {
+    if (userList[i].getUsername() === username) {
+      return userList[i];
     }
   }
   return undefined;
@@ -263,15 +258,15 @@ function authenticate(user: string, pass: string): User | undefined {
   let userPresent = searchByUsername(user);
   //registered user
   if (userPresent !== undefined) {
-    userPresent.printUser();
     //password OK: login
     if (userPresent.getPassword() === pass) {
+      userPresent?.printUser();
       console.log("You logged in!");
       return userPresent;
     } else {
-      return userPresent;
+      return undefined;
     }
   } else {
-    return userPresent;
+    return undefined;
   }
 }

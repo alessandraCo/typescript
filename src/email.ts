@@ -95,62 +95,70 @@ function checkMail(email: string): string | undefined {
   }
 }
 
-//users list
-let usersList: User[] = [];
+////users list
+//let usersList: User[] = [];
 
-//add new users:
-let utente1 = new User("utente1", "utente1@mail.com", "password", false);
-let cri = new User("cristina", "cristinaelkoury98@gmail.com", "criPass", true);
-let luna = new User("luna", "luna.saponaro7@gmail.com", "lunaPass", true);
-let ale = new User("ale", "petruzzelli.alessandro@gmail.com", "alePass", true);
-let io = new User("io", "alessandra.colletti@gmail.com", "myPass", true);
-usersList.push(utente1);
-usersList.push(cri);
-usersList.push(luna);
-usersList.push(ale);
-usersList.push(io);
+////add new users:
+//let utente1 = new User("utente1", "utente1@mail.com", "password", false);
+// let io = new User("io", "alessandra.colletti@gmail.com", "myPass", true);
+// usersList.push(utente1);
+// usersList.push(cri);
+// usersList.push(luna);
+// usersList.push(ale);
+// usersList.push(io);
 
-//add first admin:
-let admin1 = new User("admin1", "admin1@mail.com", "secretPass", false, true);
-usersList.push(admin1);
+// //add first admin:
+// let admin1 = new User("admin1", "admin1@mail.com", "secretPass", false, true);
+// usersList.push(admin1);
 
-//newsletter
-function sendingNews() {
-  usersList.forEach((user) => {
-    //sending email only to those users subscribed to the newsletter and with a valid email
-    if (user.getSubscription()) {
-      const email = user.getEmail();
-      if (email !== undefined) {
-        console.log("sending email to: " + email);
-        //email settings
-        var transporter = nodemailer.createTransport({
-          service: "hotmail",
-          auth: {
-            user: "testnode2023@outlook.it",
-            pass: "passNode2023",
-          },
-        });
+// const emailArray: string[] = [
+//   "alessandra.colletti@gmail.com",
+//   "ale.colletti@hotmail.it",
+//   "alessandra.colletti@soprasteria.com",
+//   "alessandra.colletti@mail.polimi.it",
+//   "alessandro.petruzzelli@mail.polimi.it",
+//   "petruzzelli.alessandro@gmail.com"
+// ];
 
-        var mailOptions = {
-          from: "testnode2023@outlook.it",
-          to: "" + email + "",
-          subject: "Sending Email using Node.js",
-          text: "Hi " + user.getUsername() + " from my newsletter application!",
-        };
+let userList: User[] = [];
+let user1 : User = new User("user1", "user1@mail.com", "pass1", true, false);
+let user2 : User = new User("user2", "user2@mail.com", "pass2", false, false);  //no newsletter
+let user3 : User = new User("user3", "user3@mail.com", "pass3", true, false);
+let user4 : User = new User("user4", "user4@mail.com", "pass4", true, false);
+let user5 : User = new User("user5", "user5@mail.com", "pass5", true, false);
+userList.push(user1);
+userList.push(user2);
+userList.push(user3);
+userList.push(user4);
+userList.push(user5);
 
-        transporter.sendMail(mailOptions, function (error, info) {
-          if (error) {
-            console.log(error);
-          } else {
-            console.log("Email sent: " + info.response);
-          }
-        });
-        return;
-      }
+const transporter = nodemailer.createTransport({
+  host: 'smtp.ethereal.email',
+  port: 587,
+  auth: {
+      user: 'thalia.kuhlman82@ethereal.email',
+      pass: 'eCRAkt1mtPBHwmtwWT'
+  }
+});
+
+userList.forEach(user => sendEmail(user1, user));
+
+ function sendEmail(fromUser : User, toUser : User) {
+  let mailOptions = {
+    from: fromUser.getEmail(),
+    to: toUser.getEmail(),
+    subject: "Sending Email using Node.js",
+    text: `Hi ${toUser.getUsername()} from my newsletter application!`,
+  };
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+      return;
+    } else {
+      console.log("Email sent: " + info.response);
+      return;
     }
   });
   return;
 }
-
-console.log(usersList);
-sendingNews();
