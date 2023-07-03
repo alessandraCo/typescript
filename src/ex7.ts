@@ -102,18 +102,25 @@ function checkMail(email: string): string | undefined {
 }
 
 let userList: User[] = [];
-let user1 : User = new User("user1", "user1@mail.com", "pass1", true, false);
-let user2 : User = new User("user2", "user2@mail.com", "pass2", false, false);  //no newsletter
-let user3 : User = new User("user3", "user3@mail.com", "pass3", true, false);
-let user4 : User = new User("user4", "user4@mail.com", "pass4", true, false);
-let user5 : User = new User("user5", "user5@mail.com", "pass5", true, false);
+let user1: User = new User("user1", "user1@mail.com", "pass1", true, false);
+let user2: User = new User("user2", "user2@mail.com", "pass2", false, false); //no newsletter
+let user3: User = new User("user3", "user3@mail.com", "pass3", true, false);
+let user4: User = new User("user4", "user4@mail.com", "pass4", true, false);
+let user5: User = new User("user5", "user5@mail.com", "pass5", true, false);
+let user6: User = new User("user6", "user6", "pass6", true, false); //no newsletter
 userList.push(user1);
 userList.push(user2);
 userList.push(user3);
 userList.push(user4);
 userList.push(user5);
 
-let admin1 : User = new User("admin1", "admin1@mail.com", "admin1Pass", true, true);
+let admin1: User = new User(
+  "admin1",
+  "admin1@mail.com",
+  "admin1Pass",
+  true,
+  true
+);
 userList.push(admin1);
 
 //Menù
@@ -158,36 +165,40 @@ while (input !== "E") {
 }
 
 //newsletter
-function sendingNews(fromUser : User) {
+function sendingNews(fromUser: User) {
   userList.forEach((user) => {
     //sending email only to those users subscribed to the newsletter and with a valid email
-    if (user.getSubscription()) {
-      const email = user.getEmail();
-      if (email !== undefined) {
-        //email settings
-        var transporter = nodemailer.createTransport({
-          host: 'smtp.ethereal.email',
-          port: 587,
-          auth: {
-              user: 'thalia.kuhlman82@ethereal.email',
-              pass: 'eCRAkt1mtPBHwmtwWT'
-          }
-        });
+    //sending email only to those users that aren't the sender
+    if (user.getUsername() !== fromUser.getUsername()) {
+      if (user.getSubscription()) {
+        const email = user.getEmail();
+        if (email !== undefined) {
+          //email settings
+          var transporter = nodemailer.createTransport({
+            host: "smtp.ethereal.email",
+            port: 587,
+            auth: {
+              user: "thalia.kuhlman82@ethereal.email",
+              pass: "eCRAkt1mtPBHwmtwWT",
+            },
+          });
 
-        var mailOptions = {
-          from: fromUser.getEmail(),
-          to: email,
-          subject: "Sending Email using Node.js",
-          text: "Hi "+ user.getUsername() +" from my newsletter application!",
-        };
+          var mailOptions = {
+            from: fromUser.getEmail(),
+            to: email,
+            subject: "Sending Email using Node.js",
+            text:
+              "Hi " + user.getUsername() + " from my newsletter application!",
+          };
 
-        transporter.sendMail(mailOptions, function (error, info) {
-          if (error) {
-            console.log(error);
-          } else {
-            console.log("Email sent: " + info.response);
-          }
-        });
+          transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+              console.log(error);
+            } else {
+              console.log("Email sent: " + info.response);
+            }
+          });
+        }
       }
       return;
     }

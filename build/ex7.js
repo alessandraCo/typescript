@@ -79,6 +79,7 @@ let user2 = new User("user2", "user2@mail.com", "pass2", false, false); //no new
 let user3 = new User("user3", "user3@mail.com", "pass3", true, false);
 let user4 = new User("user4", "user4@mail.com", "pass4", true, false);
 let user5 = new User("user5", "user5@mail.com", "pass5", true, false);
+let user6 = new User("user6", "user6", "pass6", true, false); //no newsletter
 userList.push(user1);
 userList.push(user2);
 userList.push(user3);
@@ -128,32 +129,35 @@ while (input !== "E") {
 function sendingNews(fromUser) {
     userList.forEach((user) => {
         //sending email only to those users subscribed to the newsletter and with a valid email
-        if (user.getSubscription()) {
-            const email = user.getEmail();
-            if (email !== undefined) {
-                //email settings
-                var transporter = nodemailer_1.default.createTransport({
-                    host: 'smtp.ethereal.email',
-                    port: 587,
-                    auth: {
-                        user: 'thalia.kuhlman82@ethereal.email',
-                        pass: 'eCRAkt1mtPBHwmtwWT'
-                    }
-                });
-                var mailOptions = {
-                    from: fromUser.getEmail(),
-                    to: email,
-                    subject: "Sending Email using Node.js",
-                    text: "Hi " + user.getUsername() + " from my newsletter application!",
-                };
-                transporter.sendMail(mailOptions, function (error, info) {
-                    if (error) {
-                        console.log(error);
-                    }
-                    else {
-                        console.log("Email sent: " + info.response);
-                    }
-                });
+        //sending email only to those users that aren't the sender
+        if (user.getUsername() !== fromUser.getUsername()) {
+            if (user.getSubscription()) {
+                const email = user.getEmail();
+                if (email !== undefined) {
+                    //email settings
+                    var transporter = nodemailer_1.default.createTransport({
+                        host: "smtp.ethereal.email",
+                        port: 587,
+                        auth: {
+                            user: "thalia.kuhlman82@ethereal.email",
+                            pass: "eCRAkt1mtPBHwmtwWT",
+                        },
+                    });
+                    var mailOptions = {
+                        from: fromUser.getEmail(),
+                        to: email,
+                        subject: "Sending Email using Node.js",
+                        text: "Hi " + user.getUsername() + " from my newsletter application!",
+                    };
+                    transporter.sendMail(mailOptions, function (error, info) {
+                        if (error) {
+                            console.log(error);
+                        }
+                        else {
+                            console.log("Email sent: " + info.response);
+                        }
+                    });
+                }
             }
             return;
         }
