@@ -26,7 +26,7 @@
    * register a new User (saved in a Arraylist)
    * login: you can login as admin or as a common user (boolean property of User)
      * admin: access another menu where it is possible to make someone an admin or to send newsletter to all user registered (with a personalized message)
-* *email:* small function that automatic sends emails from a specified user to all users present in a user list nodemailer module of node.js and Ethereal account. It is possible to include a personalized message (like "Hi ${username}!")
+* *email:* small function that automatic sends emails from a specified user to all users present in a user list using nodemailer module of node.js and Ethereal account. It is possible to include a personalized message (like "Hi ${username}!")
 ---
 ### **Installation:**
 1. Clone this repository
