@@ -44,3 +44,5 @@
 ### **Additional info:**
 - Ethereal (used in the seventh and in the "email" exercise) is a fake SMTP service, completely free anti-transactional email service where messages never get delivered. It helped me fix the "concurrent connections limit exceeded" error that occurred every time trying to send emails from an outlook account to more than two users.
 ---
+### **Demo** Ex7
+![](https://github.com/alessandraCo/typescript/blob/main/ex7.gif)
