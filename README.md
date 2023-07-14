@@ -21,12 +21,12 @@
    * A word of length L costs `L*0.001+0.01` €
    * The word 'stop' and spaces are free 
 * *Ex6 - Armstrong:* calculates how many Armstrong numbers are between 0 and 100000 
-   * ##### *An Armstrong number is a natural integer that is the sum of its own digits each raised to the power of the number of digits*
+   * *An Armstrong number is a natural integer that is the sum of its own digits each raised to the power of the number of digits*
 * *Ex7 - newsletter:* small app console only that automatic sends emails to users subscribed to the newsletter using nodemailer module of node.js and Ethereal account. After running the app you can:
    * register a new User (saved in a Arraylist)
    * login: you can login as admin or as a common user (boolean property of User)
      * admin: access another menu where it is possible to make someone an admin or to send newsletter to all user registered (with a personalized message)
-* *email:* small function that automatic sends emails from a specified user to all users present in a user list nodemailer module of node.js and Ethereal account. It is possible to include a personalized message (like "Hi ${username}!")
+* *email:* small function that automatic sends emails from a specified user to all users present in a user list using nodemailer module of node.js and Ethereal account. It is possible to include a personalized message (like "Hi ${username}!")
 ---
 ### **Installation:**
 1. Clone this repository
