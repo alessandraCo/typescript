@@ -35,7 +35,7 @@
    1. install `node.js`:
    *  if you have already installed `node.js` you can skip this passage
    * you can check it typing in the terminal `node -v`: if this command returns the `node.js` version, you can skip this passage, otherwise:
-      * go to [Node.js](https://nodejs.org), dowload and install it
+      * go to [Node.js](https://nodejs.org), download and install it
    2. install "nodemailer": in you terminal, write: `npm i nodemailer` 
    3. from the project folder, start the exercises typing in your terminal:
    * `node ./build/ex7.js` for exercise 7
